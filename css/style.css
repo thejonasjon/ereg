@@ -19,11 +19,6 @@
 	background-color: #336633;
 	color: white;
 }
-@media screen(min-width: 320px;) and (min-height: 480px;){
-
-	.header {
-	background-color: black;
-}
 }
 
 .header a {
@@ -48,7 +43,6 @@
 .reg2{
 	font-family: Myriad Pro;
 	font-weight: regular;
-	font-size: 10px;
 	color: white;
 	text-decoration: none;
 	float: right;
@@ -67,36 +61,27 @@
 	font-family: Myriad Pro;
 	color: white;
 	text-align: center;
-	margin-top: 70px;
-	
+	margin-top: 70px;	
 }
-
-.morning {
+/*.morning {
 	display: none;
 	font-family: Myriad Pro;
 	font-weight: regular;
 	font-size: 120px;
-	color: #ffff33;
 	margin-top: 200px;
-}
-
-
+}*/
 .welcome{
 	font-family: Myriad Pro;
 	font-size: 30px;
 	font-weight: regular;
 	color: white;
-	margin-top: -25px;
-
-	
+	margin-top: -25px;	
 }
-
 .date{
 	font-family: Myriad Pro;
 	font-size: 20px;
 	font-weight: italic;
 	color: #99ff99;
-	
 }
 
 .login{
@@ -254,4 +239,13 @@ thead th {
 tbody td {
 	text-align: center;
 
+}
+
+@media screen (min-width: 350px){
+	.header {
+
+
+	background-color: black;
+	
+	}
 }

@@ -1,28 +1,63 @@
  <?php 
+ 	session_start();
+
  	require 'config/db.php';
  	$con = new db();
  	$db = $con->connect();
 
- 	// if (isset($_POST['okbtn'])) {
+ 	/*if(isset($_POST['login'])){
+ 		$pass = $_POST['password'];
  		
- 		// $pass = $_POST['password'];
- 	// }
+ 			
+    $sql = "SELECT * FROM registration WHERE password = :pass;";
+    
+ 	$stmt = $db->prepare($sql);
 
- 	 // echo "<script></script>";
+ 	 $stmt->bindParam('pass', $pass);
+ 	 $stmt->execute();
 
- 	 // if(isset($_POST['okbtn']))
- 	 	// $pass = $_POST['password'];
+ 	$result = $stmt->fetchAll(PDO::FETCH_OBJ);
+ 	
+ 	if (!$result) {
+ 		echo "<script>alert ('password invalid');</script>";
+ 	}
+ 	// stop here 28/07/2015
+ 	else{
+ 		// require "attendance.php";
+ 		echo "<script>alert ('Thanks, You have successfully clocked in toady attentence');</script>";
 
- 	 // $sql = "SELECT * FROM registration WHERE psssword = :pass;";
- 	 // $stmt = $sql->prepare($sql);
+ 	$sql = 'SELECT * FROM registration WHERE password = :password';
 
- 	 // $stmt->bindParam('pass', $pass);
+    $stmt = $db->prepare($sql);
 
- 	 // $stmt->execute();
+    $stmt->bindParam('password', $_SESSION['password']);
+    $stmt->execute();
 
- 	// $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
- 	// echo "no pass";
+      
+     foreach ($result as $row) {
+     	$a=1;
+     	$a++;
+        $row->first_name;?><span>-</span><?=$row->second_name;
+        $row->date_time;
+     
+    $db = null;
+
+ 	}
+ }
+
+  /*else {
+ 		foreach ($result as $row->password;)  {
+ 			$_SESSION['password'] = $row->password;
+ 			echo "<script>window.location.href = 'attendance.php';</script>";
+ 		}
+ 	 echo "no pass";
+ 	}*/
+ 		
+ 	/*}*/
+ 
+ 	
   ?>
 
 
@@ -46,42 +81,38 @@
 <div>
      <!-- heading start here -->
 	<div class="header">
-		<a class="reg" href="index.php">E-reg</a>
-		<a class="reg2" href="Attendance.php">Attendance</a>
+		<a class="reg" style="text-decoration-line: none;" href="index.php">E-reg</a>
+		<a class="reg2" style="text-decoration-line: none;" href="Excuse.php">Excuse</a> 
 	</div>
 
 	<div class="con">
-		<h1 id="morning" class="morning">Good Morning</h1>
+		<h1 style="margin-top: 200px; font-style: italic; font-size: 125px; font-family: Myriad Pro; color: #ffff00;"><?php $dat = date('H-i-sa'); if($dat < '12:00:00') echo "Good morning"; else{ echo "Good afternoon";} ?></h1>
+		<!-- <h1 class="morning">Good morning</h1> -->
 		<h4 class="welcome">Welcome to the studio...</h4>
-		<h6 class="date">18/7/2017</h6>
+		<h6 class="date"><?php $dat = date('Y-m-d'); echo " $dat";?></h6>
 	</div>
 
 	<div class="login">
 		<div>
-		<button id="myBtn" class="btn btn-success" name="loginbtn">Login</button>
+		<!-- <a href="login.php" class="btn btn-success">Login</a> -->
+		 <button id="myBtn" class="btn btn-success" name="loginbtn">Login</button> 
 	</div>
-	
-	<div>	
-		<!-- The Modal -->
-        <div id="myModal" class="modal">
-
-  		<!-- Modal content -->
-  		<div class="modal-content">
-    	<span class="close">&times;</span>
-    	<div class="form-group">
-      			<label for="password">Password:</label>
-        		<input type="password" class="form-control" id="password" placeholder="Enter password" name="password" placeholder="Enter password to register">
-        		<div>
-        			<button class="btn2" name="okbtn">Ok</button>
-        		</div>
-      	</div>
-    	</div>
-  		</div>
-
-		</div>
-
+	<form method="post" action="attendance.php">
+		<div id="myModal" class="modal">
+		<div class="modal-content">
+		<span class="close">&times;</span>
+		<div class="form-group">
+			<label for="password">Password:</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password to be register" required="">
+				<div>
+					<button class="btn2" name="login">Login</button>
+				</div>
 		</div>
 		</div>
+		</div>
+	</form>
+
+		
 		<div class="sign">
 		<p>If you don't have an account?</p>
 		<p><a class="signbtn" href="registration.php">Sign-Up</a></p>
@@ -101,10 +132,10 @@
 			<div class="form-group">
                 <label class="control-label col-sm-2" for="password">Password:</label>
                 <div class="col-sm-10">
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="email">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" name="email">
       </div>
     </div>
-			</div>
+			</div> 
 		
 
 	</section>-->
@@ -125,7 +156,7 @@
 	
 
 		// Get the modal
-/**var modal = document.getElementById('myModal');
+var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -148,13 +179,8 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}**/
-
-var dat = new Date();
-var h = getHours();
-if (h > 12) {
-	alert ("good afternoon");
 }
+
 </script>
 </body>
 </html>

@@ -7,27 +7,27 @@
       if (isset($_POST["submitbtn"])) {
      
      // getting input values by user.
-        $first = $_POST["first_name"];
+        $first = $_POST["first_name"]; 
         $last = $_POST["last_name"];
         $email = $_POST["email"];
         $telephone = $_POST["telephone"];
-        $gender = $_POST["gender"];
-        $nationallity = $_POST["nationallity"];
-        $current= $_POST["current"];
-        $state_origin = $_POST["sot"];
-        $lga = $_POST["lga"];
-        $address = $_POST["address"];
-        $community = $_POST["community"];
+        // $gender = $_POST["gender"];
+        // $nationallity = $_POST["nationallity"];
+        // $current= $_POST["current"];
+        // $state_origin = $_POST["sot"];
+        // $lga = $_POST["lga"];
+        // $address = $_POST["address"];
+        // $community = $_POST["community"];
         $department = $_POST["department"];
         $date_created = date('y-m-d');
 
-        echo "<script>
-               if () {
-                 # code...
-               }
-         </script>";
+        $password = (mt_rand(10,100000)); 
+      
+          echo "<script>alert ('$password')</script>";
+
         
-        $sql = "INSERT INTO registration (first_name, second_name, email, telephone, gender, nationality, current_lga, state_of_origin, lga, community, department, residential_adress, date_time) VALUES (:first, :second, :eml, :tel, :gen, :nation, :current, :sot, :lga, :com, :depart, :adress, :dt);";
+        
+        $sql = "INSERT INTO registration (first_name, second_name, email, telephone, department,  date_time, password) VALUES (:first, :second, :eml, :tel, :depart, :dt, :password);";
 
         $stmt = $db->prepare($sql);
 
@@ -35,20 +35,22 @@
         $stmt->bindParam('second', $last);
         $stmt->bindParam('eml', $email);
         $stmt->bindParam('tel', $telephone);
-        $stmt->bindParam('gen', $gender);
-        $stmt->bindParam('nation', $nationallity);
-        $stmt->bindParam('current', $current);
-        $stmt->bindParam('sot', $state_origin);
-        $stmt->bindParam('lga', $lga);
-        $stmt->bindParam('com', $community);
+        // $stmt->bindParam('gen', $gender);
+        // $stmt->bindParam('nation', $nationallity);
+        // $stmt->bindParam('current', $current);
+        // $stmt->bindParam('sot', $state_origin);
+        // $stmt->bindParam('lga', $lga);
+        // $stmt->bindParam('com', $community);
         $stmt->bindParam('depart', $department);
-        $stmt->bindParam('adress', $address);
+        // $stmt->bindParam('adress', $address);
         $stmt->bindParam('dt', $date_created);
+        $stmt->bindParam('password', $password);
   
         $result = $stmt->execute();
 
           if($result != null);{
-          echo "you got you account stored";
+          echo "<script>window.location.href = 'index.php';</script>";
+          echo "<script>alert ('account create successfully');</script>";
 
           }
         
@@ -157,88 +159,89 @@
 	 <div class="container">
   <form method="post" class="form-horizontal" action="" style="margin-top: 20px; color: white;">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="first">First name:</label>
+      <label class="control-label col-sm-2" for="first" style="font-size: 30px; top: -15px; ">First name:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="first" placeholder="first_name" name="first_name" required>
       </div>
     </div>
 
      <div class="form-group">
-      <label class="control-label col-sm-2" for="last">Last name:</label>
+      <label class="control-label col-sm-2" for="last" style="font-size: 30px; top: -15px; ">Last name:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="last" placeholder="last_name" name="last_name" required="">
       </div>
     </div>
 
      <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
+      <label class="control-label col-sm-2" for="email" style="font-size: 30px; top: -15px; ">Email:</label>
       <div class="col-sm-10">
         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
       </div>
     </div>
 
      <div class="form-group">
-      <label class="control-label col-sm-2" for="tel">Telephone:</label>
+      <label class="control-label col-sm-2" for="tel" style="font-size: 30px; top: -15px; ">Telephone:</label>
       <div class="col-sm-10">
         <input type="Tel" class="form-control" id="tel" placeholder="Enter Telephone" name="telephone" required>
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group"> 
       <label class="control-label col-sm-2" for="gen">Gender:</label>
       <div class="col-sm-10">          
       <select class="form-control" name="gender">
+        <option>select gender</option>
         <option>male</option>
         <option>female</option>
       </select>
       </div><br><br>
-      </div>
+      </div>-->
 
-    <div class="form-group">
+   <!-- <div class="form-group">
       <label class="control-label col-sm-2" for="nat">Nationality:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="nan" placeholder="Enter Nationallity" name="nationallity" required>
       </div>
-    </div>
+    </div> -->
 
-    <div class="form-group">
+   <!-- <div class="form-group">
       <label class="control-label col-sm-2" for="lga">Current L.G.A:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="lga" placeholder="Enter Current L.G.A" name="current" required>
       </div>
-    </div>
+    </div> -->
 
-    <div class="form-group">
+   <!-- <div class="form-group">
       <label class="control-label col-sm-2" for="sot">State of Origin:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="sot" placeholder="Enter State of Origin" name="sot" required>
       </div>
-    </div>
+    </div> -->
 
-     <div class="form-group">
+   <!--  <div class="form-group">
       <label class="control-label col-sm-2" for="lga2">L.G.A:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="lga2" placeholder="Enter L.G.A" name="lga">
       </div>
-    </div>
+    </div> -->
 
-    <div class="form-group">
+  <!--  <div class="form-group">
       <label class="control-label col-sm-2" for="lga2">Residential Address:</label>
       <div class="col-sm-10">
         <!-- <input type="text" class="form-control" id="lga2" placeholder="Enter L.G.A" name="current"> -->
-        <textarea class="form-control" placeholder="Enter address" name="address" required></textarea>
+     <!--   <textarea class="form-control" placeholder="Enter address" name="address" required></textarea>
       </div>
-    </div>
+    </div>  -->
 
-     <div class="form-group">
+  <!--   <div class="form-group">
       <label class="control-label col-sm-2" for="com">Community:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="com" placeholder="Enter community" name="community" required>
       </div>
-    </div>
+    </div>  -->
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="gen">Department:</label>
+      <label class="control-label col-sm-2" for="gen" style="font-size: 30px; top: -15px; ">Department:</label>
       <div class="col-sm-10">          
       <select class="form-control" name="department" required>
         <option>Graphics-design</option>

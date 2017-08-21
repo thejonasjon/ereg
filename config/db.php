@@ -2,7 +2,6 @@
 <?php 
 
  		Class db {
-
  			private $host = "localhost";
  			private $user = "root";
  			private $password = "";

@@ -1,20 +1,111 @@
-
+ 
 <?php 
-     require 'config/db.php';
-    $con = new db();
-    $db = $con->connect();
+      session_start();
+       require 'config/db.php';
+      $con = new db();
+      $db = $con->connect();
 
 
-    $sql = "SELECT * FROM registration;";
-
+   /*   if(isset($_POST['login'])){
+    $pass = $_POST['password'];
+    
+      
+    $sql = "SELECT * FROM registration WHERE password = :pass;";
+    
     $stmt = $db->prepare($sql);
 
+    $stmt->bindParam('pass', $pass);
     $stmt->execute();
 
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+  
+    if (!$result) {
+    echo "<script>alert ('password invalid');</script>";
+  }
 
+  // stop here 28/07/2015
+  else{
+    // require "attendance.php";
+    echo "<script>alert ('Thanks, You have successfully clocked in today');</script>";
+
+    // auto image generation
+ /*  srand( microtime() * 1000000);
+    $num = rand( 1, 4);
+    // $text = "<h5>Hello dere</h5>";
+
+    switch ($num) 
+    {
+      case 1: $img = "img/azin.png";
+        
+        break;
+
+      case 2: $img = "img/bird.jpg";
+        
+        break;
+
+      case 3: $img = "img/bull.jpg";
+        
+        break;
+
+      case 4: $img = "img/bull.jpg";
+        
+        break;
+        echo " Random text : <img src= $img>";  */
+      
+      
+    /*}
+
+  /*$sql = 'SELECT * FROM registration WHERE password = :password';
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam('password', $_SESSION['password']);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+*/
+      
+     /*foreach ($result as $row) {
+      $a=1;
+      $a++;
+        $row->first_name;?><span>-</span><?=$row->second_name;
+        $row->date_time;
+     
     $db = null;
 
+  }*/
+ /*}
+
+  /*else {
+    foreach ($result as $row->password;)  {
+      $_SESSION['password'] = $row->password;
+      echo "<script>window.location.href = 'attendance.php';</script>";
+    }
+   echo "no pass";
+  }*/
+    
+ 
+
+    
+     /*$sql = "SELECT * FROM registration;";
+
+     $stmt = $db->prepare($sql);
+
+     $stmt->execute();
+
+     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    $sql = 'SELECT * FROM registration';
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam('password', $_SESSION['password']);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+     $db = null;
+    */
  ?>
 
 
@@ -38,7 +129,7 @@
 <div>
      <!-- heading start here -->
 	<div class="header">
-		<a class="reg" href="index.php">E-reg</a>
+		<a class="reg" href="index.php" style="text-decoration-line: none;">E-reg</a>
 	</div>
 
 	<!-- Table start -->
@@ -59,14 +150,46 @@
       </tr>
     </thead>
     <tbody>
-    <?php $a=1; foreach ($result as $row) {
-     ?>
-      <tr id="tableruler">    
-      	<td><?= $a++;?></td>
-        <td><?= $row->first_name;?><span>-</span><?=$row->second_name;?></td>
-        <td><?= $row->date_time;?></td> 
-      </tr>
-      <?php }?>
+
+    <?php
+
+        if(isset($_POST['login'])){
+    $pass = $_POST['password'];
+    
+      
+    $sql = "SELECT * FROM registration WHERE password = :pass;";
+    
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam('pass', $pass);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+  
+    if (!$result) {
+    echo "<script>alert ('password invalid');</script>";
+  }
+
+  // stop here 28/07/2015
+  else{
+    // require "attendance.php";
+    echo "<script>alert ('Thanks, You have successfully clocked in today');</script>";
+
+   
+    }
+
+  
+ }
+
+    ?>
+      <?php $a = 1; foreach($result as $row){
+        ?>
+        <tr>
+          <td><?= $a++;?></td>
+          <td><?= $row->first_name;?><span>-</span><?=$row->second_name;?></td>
+          <td><?= $row->date_time = date('H:i:sa'); ?></td>
+        </tr>
+        <?php }?>
     </tbody>
   </table>
 </div>
